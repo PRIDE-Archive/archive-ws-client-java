@@ -1,7 +1,7 @@
 package uk.ac.ebi.pride.archive.wsclient.client.project;
 
 import org.springframework.web.client.RestTemplate;
-import uk.ac.ebi.pride.archive.wsclient.config.ArchiveWsConfig;
+import uk.ac.ebi.pride.archive.wsclient.config.AbstractArchiveWsConfig;
 import uk.ac.ebi.pride.archive.wsclient.model.clustersummary.ProjectSummaryList;
 
 import java.io.IOException;
@@ -9,14 +9,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author Jose A. Dianes <jadianes@gmail.com>
+ * @author jadianes
+ * @author ypriverol
  */
 public class ProjectWsClient {
 
     private RestTemplate restTemplate;
-    private ArchiveWsConfig config;
+    private AbstractArchiveWsConfig config;
 
-    public ProjectWsClient(ArchiveWsConfig config) {
+    public ProjectWsClient(AbstractArchiveWsConfig config) {
         this.config = config;
         this.restTemplate = new RestTemplate();
     }
@@ -34,4 +35,6 @@ public class ProjectWsClient {
         return this.restTemplate.getForObject(url, ProjectSummaryList.class, args);
 
     }
+
+
 }

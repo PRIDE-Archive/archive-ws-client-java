@@ -5,24 +5,23 @@ package uk.ac.ebi.pride.archive.wsclient.config;
  * @author ypriverol
  *
  */
-public class ArchiveWsConfig {
+public abstract class AbstractArchiveWsConfig {
 
     private String hostName;
     private String protocol;
+
+    protected AbstractArchiveWsConfig(String protocol, String hostName) {
+        this.hostName = hostName;
+        this.protocol = protocol;
+    }
 
     public String getHostName() {
         return hostName;
     }
 
-    public void setHostName(String hostName) {
-        this.hostName = hostName;
-    }
 
     public String getProtocol() {
         return protocol;
     }
 
-    public void setProtocol(String protocol) {
-        this.protocol = protocol;
-    }
 }
