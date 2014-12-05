@@ -1,4 +1,4 @@
-package uk.ac.ebi.pride.archive.wsclient.model.clustersummary;
+package uk.ac.ebi.pride.archive.wsclient.model.projectsummary;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

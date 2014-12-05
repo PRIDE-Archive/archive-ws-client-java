@@ -8,8 +8,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import uk.ac.ebi.pride.archive.wsclient.model.clustersummary.ProjectSummary;
-import uk.ac.ebi.pride.archive.wsclient.model.clustersummary.ProjectSummaryList;
+import uk.ac.ebi.pride.archive.wsclient.model.projectsummary.ProjectSummary;
+import uk.ac.ebi.pride.archive.wsclient.model.projectsummary.ProjectSummaryList;
 
 import java.io.IOException;
 

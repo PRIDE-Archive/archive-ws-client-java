@@ -8,11 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import uk.ac.ebi.pride.archive.wsclient.config.AbstractArchiveWsConfig;
-import uk.ac.ebi.pride.archive.wsclient.model.clustersummary.ProjectSummaryList;
+import uk.ac.ebi.pride.archive.wsclient.model.projectsummary.ProjectSummaryList;
 
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.TestCase.assertTrue;
-import static org.junit.Assert.*;
+
+/**
+ * @author ypriverol
+ */
 
 @ContextConfiguration(locations = {"/test-context.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
