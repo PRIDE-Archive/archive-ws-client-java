@@ -2,7 +2,7 @@ package uk.ac.ebi.pride.archive.wsclient.client.project;
 
 import org.springframework.web.client.RestTemplate;
 import uk.ac.ebi.pride.archive.wsclient.config.AbstractArchiveWsConfig;
-import uk.ac.ebi.pride.archive.wsclient.model.projectsummary.ProjectSummaryList;
+
 
 import java.io.IOException;
 import java.util.HashMap;
