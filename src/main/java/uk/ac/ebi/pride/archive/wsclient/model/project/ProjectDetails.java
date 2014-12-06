@@ -65,7 +65,6 @@ public class ProjectDetails {
     @JsonProperty("species")
     public String[] species;                 // the species annotation for the project,
 
-
     @JsonProperty("tissues")
     public String[] tissues;                 // the tissue annotation for the project,
 
@@ -82,7 +81,7 @@ public class ProjectDetails {
     public String projectDescription;        // the description provided for the project
 
     @JsonProperty("numAssays")
-    public Integer numAssays;                // the number of assays associated with this project,
+    public int numAssays;                // the number of assays associated with this project,
 
 
     @JsonProperty("submissionType")

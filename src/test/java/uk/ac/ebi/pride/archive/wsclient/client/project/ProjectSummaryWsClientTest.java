@@ -1,40 +1,43 @@
-package uk.ac.ebi.pride.archive.wsclient;
+package uk.ac.ebi.pride.archive.wsclient.client.project;
 
-import uk.ac.ebi.pride.archive.wsclient.client.project.ProjectSummaryWsClient;
-import uk.ac.ebi.pride.archive.wsclient.config.AbstractArchiveWsConfig;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import uk.ac.ebi.pride.archive.wsclient.model.projectsummary.ProjectSummary;
+import uk.ac.ebi.pride.archive.wsclient.config.AbstractArchiveWsConfig;
 import uk.ac.ebi.pride.archive.wsclient.model.projectsummary.ProjectSummaryList;
-
-import java.io.IOException;
 
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.TestCase.assertTrue;
 
 /**
- * @author Jose A. Dianes <jadianes@gmail.com>
- *
+ * @author ypriverol
  */
+
 @ContextConfiguration(locations = {"/test-context.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
-public class ArchiveWsClientTemplateTest {
+
+public class ProjectSummaryWsClientTest {
 
     @Autowired
     AbstractArchiveWsConfig archiveWsConfig;
     ProjectSummaryWsClient projectWsClient;
 
     @Before
-    public void init() {
+    public void setUp() throws Exception {
         projectWsClient = new ProjectSummaryWsClient(archiveWsConfig);
     }
 
+    @After
+    public void tearDown() throws Exception {
+
+    }
+
     @Test
-    public void testPredict() throws IOException {
+    public void testList() throws Exception {
 
         ProjectSummaryList res = projectWsClient.list("",1,10);
 
@@ -42,12 +45,17 @@ public class ArchiveWsClientTemplateTest {
         assertNotNull(res.list);
         assertTrue(res.list.length > 0);
         assertTrue(res.list.length == 10);
-        for(ProjectSummary project: res.list){
-            System.out.println(project.accession);
-            for(String instrument : project.instrumentNames){
-                System.out.println("\t" + instrument);
-            }
-        }
+
+    }
+
+    @Test
+    public void testListParameters() throws Exception {
+
+        ProjectSummaryList res = projectWsClient.list("",1,10, new String[]{"human", "mouse"},null,null,null,null,null,null,null);
+        assertNotNull(res);
+        assertNotNull(res.list);
+        assertTrue(res.list.length > 0);
+        assertTrue(res.list.length == 10);
 
     }
 }

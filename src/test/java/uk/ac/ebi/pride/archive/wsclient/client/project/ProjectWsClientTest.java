@@ -8,14 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import uk.ac.ebi.pride.archive.wsclient.config.AbstractArchiveWsConfig;
-import uk.ac.ebi.pride.archive.wsclient.model.projectsummary.ProjectSummaryList;
+import uk.ac.ebi.pride.archive.wsclient.model.project.ProjectDetails;
 
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.TestCase.assertTrue;
-
-/**
- * @author ypriverol
- */
+import static org.junit.Assert.*;
 
 @ContextConfiguration(locations = {"/test-context.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -37,25 +34,11 @@ public class ProjectWsClientTest {
     }
 
     @Test
-    public void testList() throws Exception {
+    public void testGetProject() throws Exception {
 
-        ProjectSummaryList res = projectWsClient.list("",1,10);
-
-        assertNotNull(res);
-        assertNotNull(res.list);
-        assertTrue(res.list.length > 0);
-        assertTrue(res.list.length == 10);
-
-    }
-
-    @Test
-    public void testListParameters() throws Exception {
-
-        ProjectSummaryList res = projectWsClient.list("",1,10, new String[]{"human", "mouse"},null,null,null,null,null,null,null);
-        assertNotNull(res);
-        assertNotNull(res.list);
-        assertTrue(res.list.length > 0);
-        assertTrue(res.list.length == 10);
+        ProjectDetails project = projectWsClient.getProject("PXD000320");
+        assertNotNull(project);
+        assertNotNull(project.submitter);
 
     }
 }
