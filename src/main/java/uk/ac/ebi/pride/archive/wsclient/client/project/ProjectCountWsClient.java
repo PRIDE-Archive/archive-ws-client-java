@@ -38,14 +38,12 @@ public class ProjectCountWsClient {
         this.config = config;
     }
 
-    public int getProjectCount(String q, int page, int show) throws IOException {
+    public int getProjectCount(String q) throws IOException {
         Map<String, String> args = new HashMap<String, String>();
         args.put("q", q);
-        args.put("page", "" + page);
-        args.put("show", "" + show);
 
-        String url = String.format("%s://%s/pride/ws/archive/project/count%s",
-                    config.getProtocol(), config.getHostName(), "project/list?q={q}&page={page}&show={show}");
+        String url = String.format("%s://%s/pride/ws/archive/project/count?%s",
+                    config.getProtocol(), config.getHostName(), "project/list?q={q}");
 
 
         return this.restTemplate.getForObject(url, Integer.class, args);
@@ -55,8 +53,6 @@ public class ProjectCountWsClient {
     /**
      *
      * @param q Retrieve the information for a particular query trough all the fields
-     * @param page
-     * @param show
      * @param speciesFilter
      * @param ptmsFilter
      * @param tissueFilter
@@ -68,7 +64,7 @@ public class ProjectCountWsClient {
      * @return
      * @throws IOException
      */
-    public ProjectSummaryList getProjectCount(String q, int page, int show,
+    public Integer getProjectCount(String q,
                                    String[] speciesFilter,
                                    String[] ptmsFilter,
                                    String[] tissueFilter,
@@ -80,8 +76,6 @@ public class ProjectCountWsClient {
 
         Map<String, String> args = new HashMap<String, String>();
         args.put("q", q);
-        args.put("page", "" + page);
-        args.put("show", "" + show);
         args.put("speciesFilter", constructComplexFieldFilter(speciesFilter));
         args.put("ptmsFilter", constructComplexFieldFilter(ptmsFilter));
         args.put("tissueFilter", constructComplexFieldFilter(tissueFilter));
@@ -91,12 +85,12 @@ public class ProjectCountWsClient {
         args.put("quantificationFilter", constructComplexFieldFilter(quantificationFilter));
         args.put("projectTagFilter", constructComplexFieldFilter(projectTagFilter));
 
-        String url = String.format("%s://%s/pride/ws/archive/%s",
+        String url = String.format("%s://%s/pride/ws/archive/project/count?%s",
                 config.getProtocol(),
                 config.getHostName(),
-                "project/list?q={q}&page={page}&show={show}&speciesFilter={speciesFilter}&ptmsFilter={ptmsFilter}&tissueFilter={tissueFilter}&diseaseFilter={diseaseFilter}&titleFilter={titleFilter}&instrumentFilter={instrumentFilter}&quantificationFilter={quantificationFilter}&projectTagFilter={projectTagFilter}");
+                "project/list?q={q}&speciesFilter={speciesFilter}&ptmsFilter={ptmsFilter}&tissueFilter={tissueFilter}&diseaseFilter={diseaseFilter}&titleFilter={titleFilter}&instrumentFilter={instrumentFilter}&quantificationFilter={quantificationFilter}&projectTagFilter={projectTagFilter}");
 
-        return this.restTemplate.getForObject(url, ProjectSummaryList.class, args);
+        return this.restTemplate.getForObject(url, Integer.class, args);
 
     }
 
