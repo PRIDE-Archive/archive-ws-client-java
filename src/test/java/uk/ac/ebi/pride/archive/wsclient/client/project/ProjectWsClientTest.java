@@ -45,6 +45,16 @@ public class ProjectWsClientTest {
 
         assertTrue("Partial submission", project.submissionType.equalsIgnoreCase("PARTIAL"));
 
+        project = projectWsClient.getProject("PXD000402");
+        assertNotNull(project);
+
+        assertNotNull(project.submitter);
+        assertTrue("The submitter is Matthew", project.submitter.firstName.equalsIgnoreCase("Jean"));
+
+        assertTrue("Partial submission", project.submissionType.equalsIgnoreCase("COMPLETE"));
+
+
+
 
     }
 }
