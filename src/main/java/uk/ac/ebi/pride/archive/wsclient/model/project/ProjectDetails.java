@@ -2,6 +2,7 @@ package uk.ac.ebi.pride.archive.wsclient.model.project;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import uk.ac.ebi.pride.archive.wsclient.model.common.ContactDetail;
 
 /**
  * @author ypriverol
@@ -15,7 +16,7 @@ public class ProjectDetails {
     public String accession;
 
     @JsonProperty("submitter")
-    public ContactDetail  submitter;  // details of the submitter of the dataset
+    public ContactDetail submitter;  // details of the submitter of the dataset
 
     @JsonProperty("keywords")
     public String keywords;           //relevant keywords associated with the project

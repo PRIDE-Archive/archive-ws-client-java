@@ -1,4 +1,4 @@
-package uk.ac.ebi.pride.archive.wsclient.model.project;
+package uk.ac.ebi.pride.archive.wsclient.model.common;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
