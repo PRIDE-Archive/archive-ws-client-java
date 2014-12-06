@@ -1,10 +1,13 @@
 package uk.ac.ebi.pride.archive.wsclient.model.file;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * @author ypriverol
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
+
 public class FileDetail {
 
     @JsonProperty("fileSource")

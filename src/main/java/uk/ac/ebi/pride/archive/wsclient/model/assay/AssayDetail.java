@@ -1,11 +1,15 @@
 package uk.ac.ebi.pride.archive.wsclient.model.assay;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import uk.ac.ebi.pride.archive.wsclient.model.common.ContactDetail;
 
 /**
  * @author ypriverol
  */
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+
 public class AssayDetail {
 
     @JsonProperty("assayAccession")
