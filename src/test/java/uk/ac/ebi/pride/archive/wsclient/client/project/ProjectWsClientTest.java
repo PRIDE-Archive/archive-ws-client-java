@@ -1,5 +1,6 @@
 package uk.ac.ebi.pride.archive.wsclient.client.project;
 
+import junit.framework.Assert;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,7 +39,12 @@ public class ProjectWsClientTest {
 
         ProjectDetails project = projectWsClient.getProject("PXD000320");
         assertNotNull(project);
+
         assertNotNull(project.submitter);
+        assertTrue("The submitter is Matthew", project.submitter.firstName.equalsIgnoreCase("Matthew"));
+
+        assertTrue("Partial submission", project.submissionType.equalsIgnoreCase("PARTIAL"));
+
 
     }
 }
