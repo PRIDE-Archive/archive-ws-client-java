@@ -9,37 +9,48 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author jadianes
  * @author ypriverol
+ * @author jadianes
  */
-public class ProjectSummaryWsClient extends ProjectCountWsClient{
+public class ProjectCountWsClient {
 
-    public ProjectSummaryWsClient(AbstractArchiveWsConfig config) {
-        super(config);
+    protected RestTemplate restTemplate;
+    protected AbstractArchiveWsConfig config;
+
+    public ProjectCountWsClient(AbstractArchiveWsConfig config) {
+        this.config = config;
+        this.restTemplate = new RestTemplate();
     }
 
-    /**
-     * Retrieve the information for a particular query trough all the fields
-     * @param q Query to search in all the terms in the metadata.
-     * @param page Page for the specific query.
-     * @param show Number of Projects to be retrieved
-     * @return
-     * @throws IOException
-     */
+    public RestTemplate getRestTemplate() {
+        return restTemplate;
+    }
 
-    public ProjectSummaryList list(String q, int page, int show) throws IOException {
+    public void setRestTemplate(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
+    public AbstractArchiveWsConfig getConfig() {
+        return config;
+    }
+
+    public void setConfig(AbstractArchiveWsConfig config) {
+        this.config = config;
+    }
+
+    public int getProjectCount(String q, int page, int show) throws IOException {
         Map<String, String> args = new HashMap<String, String>();
         args.put("q", q);
         args.put("page", "" + page);
         args.put("show", "" + show);
 
-        String url = String.format("%s://%s/pride/ws/archive/%s",
-                config.getProtocol(), config.getHostName(), "project/list?q={q}&page={page}&show={show}");
+        String url = String.format("%s://%s/pride/ws/archive/project/count%s",
+                    config.getProtocol(), config.getHostName(), "project/list?q={q}&page={page}&show={show}");
 
-        return this.restTemplate.getForObject(url, ProjectSummaryList.class, args);
 
+        return this.restTemplate.getForObject(url, Integer.class, args);
     }
+
 
     /**
      *
@@ -57,7 +68,7 @@ public class ProjectSummaryWsClient extends ProjectCountWsClient{
      * @return
      * @throws IOException
      */
-    public ProjectSummaryList list(String q, int page, int show,
+    public ProjectSummaryList getProjectCount(String q, int page, int show,
                                    String[] speciesFilter,
                                    String[] ptmsFilter,
                                    String[] tissueFilter,
@@ -89,4 +100,15 @@ public class ProjectSummaryWsClient extends ProjectCountWsClient{
 
     }
 
+    protected String constructComplexFieldFilter(String[] complexFilter) {
+        String res = "";
+        if(complexFilter != null && complexFilter.length > 0){
+            for (int i = 0; i < complexFilter.length -1; i ++)
+                if(complexFilter[i] != null)
+                    res = res + complexFilter[i] + ",";
+            if(complexFilter[complexFilter.length -1] != null)
+                res = res + complexFilter[complexFilter.length -1];
+        }
+        return res;
+    }
 }
