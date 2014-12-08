@@ -1,7 +1,7 @@
 package uk.ac.ebi.pride.archive.wsclient.config;
 
 /**
- * @author Jose A. Dianes <jadianes@gmail.com>
+ * @author jadianes
  * @author ypriverol
  *
  */

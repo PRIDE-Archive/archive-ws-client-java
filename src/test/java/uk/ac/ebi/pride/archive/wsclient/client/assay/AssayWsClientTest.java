@@ -29,10 +29,10 @@ public class AssayWsClientTest {
 
     @Test
     public void testGetAssayByAccession() throws Exception {
-        AssayDetail res = assayWsClient.getAssayByAccession("");
+        AssayDetail res = assayWsClient.getAssayByAccession("38579");
 
         assertNotNull(res);
-        assertNotNull(res.instrumentNames.length > 0);
+        assertNotNull(res.proteinCount == 1004);
 
     }
 

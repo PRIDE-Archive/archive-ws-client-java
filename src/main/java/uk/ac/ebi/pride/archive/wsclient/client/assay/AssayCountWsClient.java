@@ -26,7 +26,7 @@ public class AssayCountWsClient extends ArchiveClient{
      */
     public int countByProjectAccession(String projectAccession){
 
-        String url = String.format("%s://%s/pride/ws/archive/assay/count/%s",
+        String url = String.format("%s://%s/pride/ws/archive/assay/count/project/%s",
                 config.getProtocol(), config.getHostName(), projectAccession);
 
 

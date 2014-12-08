@@ -28,11 +28,11 @@ public class AssayCountWsClientTest {
     @Test
     public void testCountByProjectAccession() throws Exception {
 
-        int res = assayCountWsClient.countByProjectAccession("PXD000320");
+        int res = assayCountWsClient.countByProjectAccession("PXD000402");
 
         assertNotNull(res);
         assertNotNull(res > 0);
-        assertTrue(res == 10);
+        assertTrue(res == 4);
     }
 
 }
