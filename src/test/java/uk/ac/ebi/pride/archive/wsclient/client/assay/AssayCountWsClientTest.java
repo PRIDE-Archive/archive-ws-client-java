@@ -3,43 +3,36 @@ package uk.ac.ebi.pride.archive.wsclient.client.assay;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import uk.ac.ebi.pride.archive.wsclient.config.AbstractArchiveWsConfig;
 
 import static org.junit.Assert.*;
 
+@ContextConfiguration(locations = {"/test-context.xml"})
+@RunWith(SpringJUnit4ClassRunner.class)
+
 public class AssayCountWsClientTest {
+
+    @Autowired
+    AbstractArchiveWsConfig archiveWsConfig;
+    AssayCountWsClient assayCountWsClient;
 
     @Before
     public void setUp() throws Exception {
-
-    }
-
-    @After
-    public void tearDown() throws Exception {
-
+        assayCountWsClient = new AssayCountWsClient(archiveWsConfig);
     }
 
     @Test
     public void testCountByProjectAccession() throws Exception {
 
+        int res = assayCountWsClient.countByProjectAccession("PXD000320");
+
+        assertNotNull(res);
+        assertNotNull(res > 0);
+        assertTrue(res == 10);
     }
 
-    @Test
-    public void testGetRestTemplate() throws Exception {
-
-    }
-
-    @Test
-    public void testSetRestTemplate() throws Exception {
-
-    }
-
-    @Test
-    public void testGetConfig() throws Exception {
-
-    }
-
-    @Test
-    public void testSetConfig() throws Exception {
-
-    }
 }

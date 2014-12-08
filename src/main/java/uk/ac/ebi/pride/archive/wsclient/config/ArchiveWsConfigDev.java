@@ -1,7 +1,7 @@
 package uk.ac.ebi.pride.archive.wsclient.config;
 
 /**
- * Created by yperez on 05/12/2014.
+ * @author ypriverol
  */
 public class ArchiveWsConfigDev extends AbstractArchiveWsConfig {
 

@@ -1,6 +1,7 @@
 package uk.ac.ebi.pride.archive.wsclient.client.project;
 
 import org.springframework.web.client.RestTemplate;
+import uk.ac.ebi.pride.archive.wsclient.client.ArchiveClient;
 import uk.ac.ebi.pride.archive.wsclient.config.AbstractArchiveWsConfig;
 import uk.ac.ebi.pride.archive.wsclient.model.project.ProjectDetails;
 import uk.ac.ebi.pride.archive.wsclient.model.projectsummary.ProjectSummaryList;
@@ -12,14 +13,15 @@ import java.util.Map;
 /**
  * @author ypriverol
  */
-public class ProjectWsClient {
+public class ProjectWsClient extends ArchiveClient{
 
-    private RestTemplate restTemplate;
-    private AbstractArchiveWsConfig config;
-
+    /**
+     * Default constructor for Archive clients
+     *
+     * @param config
+     */
     public ProjectWsClient(AbstractArchiveWsConfig config) {
-        this.config = config;
-        this.restTemplate = new RestTemplate();
+        super(config);
     }
 
     /**

@@ -3,43 +3,37 @@ package uk.ac.ebi.pride.archive.wsclient.client.assay;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import uk.ac.ebi.pride.archive.wsclient.config.AbstractArchiveWsConfig;
+import uk.ac.ebi.pride.archive.wsclient.model.assay.AssayList;
 
 import static org.junit.Assert.*;
 
+@ContextConfiguration(locations = {"/test-context.xml"})
+@RunWith(SpringJUnit4ClassRunner.class)
+
 public class ProjectAssaysWsClientTest {
+
+    @Autowired
+    AbstractArchiveWsConfig archiveWsConfig;
+    ProjectAssaysWsClient projectAssaysWsClient;
 
     @Before
     public void setUp() throws Exception {
-
-    }
-
-    @After
-    public void tearDown() throws Exception {
-
+       projectAssaysWsClient = new ProjectAssaysWsClient(archiveWsConfig);
     }
 
     @Test
     public void testFindAllByProjectAccession() throws Exception {
+        AssayList res = projectAssaysWsClient.findAllByProjectAccession("PXD000320");
 
-    }
+        assertTrue(res != null);
+        assertTrue(res.list.length == 12);
 
-    @Test
-    public void testGetRestTemplate() throws Exception {
-
-    }
-
-    @Test
-    public void testSetRestTemplate() throws Exception {
-
-    }
-
-    @Test
-    public void testGetConfig() throws Exception {
-
-    }
-
-    @Test
-    public void testSetConfig() throws Exception {
+        assertTrue(res.list[0].instrumentNames.length >0);
 
     }
 }

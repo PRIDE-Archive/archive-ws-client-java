@@ -1,6 +1,7 @@
 package uk.ac.ebi.pride.archive.wsclient.client.peptide;
 
 import org.springframework.web.client.RestTemplate;
+import uk.ac.ebi.pride.archive.wsclient.client.ArchiveClient;
 import uk.ac.ebi.pride.archive.wsclient.config.AbstractArchiveWsConfig;
 import uk.ac.ebi.pride.archive.wsclient.model.peptide.PsmDetailList;
 
@@ -13,14 +14,16 @@ import java.util.Map;
  * @author ypriverol
  *
  */
-public class PeptideWsClient {
+public class PeptideWsClient extends ArchiveClient{
 
-    protected RestTemplate restTemplate;
-    protected AbstractArchiveWsConfig config;
 
-    public PeptideWsClient(RestTemplate restTemplate, AbstractArchiveWsConfig config) {
-        this.restTemplate = restTemplate;
-        this.config = config;
+    /**
+     * Default constructor for Archive clients
+     *
+     * @param config
+     */
+    public PeptideWsClient(AbstractArchiveWsConfig config) {
+        super(config);
     }
 
     /**
@@ -89,7 +92,7 @@ public class PeptideWsClient {
 
     /**
      * List of Peptides by Assay Accession
-     * @param projectAccession
+     * @param assayAccession
      * @param page
      * @param show
      * @return
@@ -110,7 +113,7 @@ public class PeptideWsClient {
 
     /**
      * Number of Peptides by Assay Accession
-     * @param projectAccession
+     * @param assayAccession
      * @return
      * @throws IOException
      */
@@ -125,7 +128,7 @@ public class PeptideWsClient {
 
     /**
      * List of Psms by Project and Sequences
-     * @param projectAccession
+     * @param assayAccession
      * @param sequence
      * @return
      */
@@ -139,7 +142,7 @@ public class PeptideWsClient {
 
     /**
      * Number of PSms by Project and Sequence
-     * @param projectAccession
+     * @param assayAccession
      * @param sequence
      * @return
      */
@@ -149,24 +152,5 @@ public class PeptideWsClient {
                 config.getProtocol(), config.getHostName(), assayAccession, sequence);
 
         return this.restTemplate.getForObject(url, Integer.class);
-    }
-
-
-
-
-    public RestTemplate getRestTemplate() {
-        return restTemplate;
-    }
-
-    public void setRestTemplate(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
-
-    public AbstractArchiveWsConfig getConfig() {
-        return config;
-    }
-
-    public void setConfig(AbstractArchiveWsConfig config) {
-        this.config = config;
     }
 }

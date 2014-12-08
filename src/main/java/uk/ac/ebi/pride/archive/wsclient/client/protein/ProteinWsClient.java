@@ -1,6 +1,7 @@
 package uk.ac.ebi.pride.archive.wsclient.client.protein;
 
 import org.springframework.web.client.RestTemplate;
+import uk.ac.ebi.pride.archive.wsclient.client.ArchiveClient;
 import uk.ac.ebi.pride.archive.wsclient.config.AbstractArchiveWsConfig;
 import uk.ac.ebi.pride.archive.wsclient.model.peptide.PsmDetailList;
 import uk.ac.ebi.pride.archive.wsclient.model.protein.ProteinDetailList;
@@ -12,14 +13,10 @@ import java.util.Map;
 /**
  * @author ypriverol
  */
-public class ProteinWsClient {
+public class ProteinWsClient extends ArchiveClient{
 
-    protected RestTemplate restTemplate;
-    protected AbstractArchiveWsConfig config;
-
-    public ProteinWsClient(RestTemplate restTemplate, AbstractArchiveWsConfig config) {
-        this.restTemplate = restTemplate;
-        this.config = config;
+    public ProteinWsClient(AbstractArchiveWsConfig config) {
+        super(config);
     }
 
     /**

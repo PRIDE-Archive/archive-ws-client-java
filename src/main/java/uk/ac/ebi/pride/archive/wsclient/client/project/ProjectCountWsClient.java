@@ -1,6 +1,7 @@
 package uk.ac.ebi.pride.archive.wsclient.client.project;
 
 import org.springframework.web.client.RestTemplate;
+import uk.ac.ebi.pride.archive.wsclient.client.ArchiveClient;
 import uk.ac.ebi.pride.archive.wsclient.config.AbstractArchiveWsConfig;
 
 
@@ -12,30 +13,16 @@ import java.util.Map;
  * @author ypriverol
  * @author jadianes
  */
-public class ProjectCountWsClient {
+public class ProjectCountWsClient extends ArchiveClient{
 
-    protected RestTemplate restTemplate;
-    protected AbstractArchiveWsConfig config;
 
+    /**
+     * Default constructor for Archive clients
+     *
+     * @param config
+     */
     public ProjectCountWsClient(AbstractArchiveWsConfig config) {
-        this.config = config;
-        this.restTemplate = new RestTemplate();
-    }
-
-    public RestTemplate getRestTemplate() {
-        return restTemplate;
-    }
-
-    public void setRestTemplate(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
-
-    public AbstractArchiveWsConfig getConfig() {
-        return config;
-    }
-
-    public void setConfig(AbstractArchiveWsConfig config) {
-        this.config = config;
+        super(config);
     }
 
     public int getProjectCount(String q) throws IOException {
@@ -51,7 +38,7 @@ public class ProjectCountWsClient {
 
 
     /**
-     *
+     * Number of Projects for specific query
      * @param q Retrieve the information for a particular query trough all the fields
      * @param speciesFilter
      * @param ptmsFilter
