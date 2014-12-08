@@ -5,7 +5,7 @@ import uk.ac.ebi.pride.archive.wsclient.config.AbstractArchiveWsConfig;
 import uk.ac.ebi.pride.archive.wsclient.model.assay.AssayDetail;
 
 /**
- * Created by yperez on 06/12/2014.
+ * @author ypriverol
  */
 public class AssayWsClient  {
 
