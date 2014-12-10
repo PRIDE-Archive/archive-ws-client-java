@@ -9,6 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import uk.ac.ebi.pride.archive.wsclient.client.project.ProjectWsClient;
 import uk.ac.ebi.pride.archive.wsclient.config.AbstractArchiveWsConfig;
+import uk.ac.ebi.pride.archive.wsclient.model.protein.ProteinDetailList;
 
 import static org.junit.Assert.*;
 
@@ -19,30 +20,38 @@ public class ProteinWsClientTest {
 
     @Autowired
     AbstractArchiveWsConfig archiveWsConfig;
-    ProteinWsClient projecttWsClient;
+    ProteinWsClient proteinWsClient;
 
     @Before
     public void setUp() throws Exception {
-        projecttWsClient = new ProteinWsClient(archiveWsConfig);
+        proteinWsClient = new ProteinWsClient(archiveWsConfig);
     }
 
     @Test
     public void testGetProteinsByProject() throws Exception {
-
+        ProteinDetailList res = proteinWsClient.getProteinsByProject("PXD000402",0,20);
+        assertTrue(res != null);
+        assertTrue(res.list.length == 20);
+        assertTrue(res.list[0].accession.equalsIgnoreCase(""));
     }
 
     @Test
     public void testCountProteinsByProject() throws Exception {
-
+        int res = proteinWsClient.countProteinsByProject("PXD000402");
+        assertTrue(res == 20);
     }
 
     @Test
     public void testGetProteinsByAssay() throws Exception {
-
+        ProteinDetailList res = proteinWsClient.getProteinsByAssay("38579",0,100);
+        assertTrue(res != null);
+        assertTrue(res.list.length == 100);
+        assertTrue(res.list[0].accession.equalsIgnoreCase(""));
     }
 
     @Test
     public void testCountProteinsByAssay() throws Exception {
-
+        int res = proteinWsClient.countProteinsByProject("38579");
+        assertTrue(res == 1004);
     }
 }

@@ -5,6 +5,6 @@ package uk.ac.ebi.pride.archive.wsclient.model.peptide;
  */
 public class PsmDetailList {
 
-    PsmDetail[] list;
+    public PsmDetail[] list;
 
 }
