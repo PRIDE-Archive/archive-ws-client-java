@@ -75,13 +75,13 @@ public class ProteinWsClient extends ArchiveClient{
 
     /**
      * Number of Proteins by Assay
-     * @param projectAccession
+     * @param assayAccession
      * @return
      */
-    public int countProteinsByAssay(String projectAccession){
+    public int countProteinsByAssay(String assayAccession){
 
         String url = String.format("%s://%s/pride/ws/archive/protein/count/assay/%s",
-                config.getProtocol(), config.getHostName(), projectAccession);
+                config.getProtocol(), config.getHostName(), assayAccession);
 
         return this.restTemplate.getForObject(url, Integer.class);
     }

@@ -31,7 +31,7 @@ public class ProteinWsClientTest {
         ProteinDetailList res = proteinWsClient.getProteinsByProject("PXD000402",0,20);
         assertTrue(res != null);
         assertTrue(res.list.length == 20);
-        assertTrue(res.list[0].accession.equalsIgnoreCase(""));
+        assertTrue(res.list[0].accession.equalsIgnoreCase("239911484"));
     }
 
     @Test
@@ -45,12 +45,12 @@ public class ProteinWsClientTest {
         ProteinDetailList res = proteinWsClient.getProteinsByAssay("38579",0,100);
         assertTrue(res != null);
         assertTrue(res.list.length == 100);
-        assertTrue(res.list[0].accession.equalsIgnoreCase(""));
+        assertTrue(res.list[0].accession.equalsIgnoreCase("239911484"));
     }
 
     @Test
     public void testCountProteinsByAssay() throws Exception {
-        int res = proteinWsClient.countProteinsByProject("38579");
-        assertTrue(res == 1004);
+        int res = proteinWsClient.countProteinsByAssay("38579");
+        assertTrue(res == 998);
     }
 }

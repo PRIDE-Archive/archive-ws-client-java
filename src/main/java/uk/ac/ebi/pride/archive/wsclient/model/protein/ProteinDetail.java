@@ -18,7 +18,7 @@ public class ProteinDetail {
     public String assayAccession;      // the assay within the project that identified the protein,
 
     @JsonProperty("synonyms")
-    public String synonyms;            // accession synonyms; either UniProt accession or EnsEMBL ID,
+    public String[] synonyms;            // accession synonyms; either UniProt accession or EnsEMBL ID,
 
     @JsonProperty("sequenceType")
     public String sequenceType;        // ['INFERRED' or 'SUBMITTED' or 'NOT_AVAILABLE']: SUBMITTED (provided with dataset) or INFERRED (inferred by PRIDE based on protein accession),
