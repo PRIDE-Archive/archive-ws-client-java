@@ -7,7 +7,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import uk.ac.ebi.pride.archive.wsclient.client.project.ProjectWsClient;
 import uk.ac.ebi.pride.archive.wsclient.config.AbstractArchiveWsConfig;
 import uk.ac.ebi.pride.archive.wsclient.model.protein.ProteinDetailList;
 
@@ -38,7 +37,7 @@ public class ProteinWsClientTest {
     @Test
     public void testCountProteinsByProject() throws Exception {
         int res = proteinWsClient.countProteinsByProject("PXD000402");
-        assertTrue(res == 20);
+        assertTrue(res == 3765);
     }
 
     @Test

@@ -148,7 +148,7 @@ public class PeptideWsClient extends ArchiveClient{
      */
     public int countPsmsByAssayAndSequence(String assayAccession, String sequence){
 
-        String url = String.format("%s://%s/pride/ws/archive/peptide/count/project/%s/sequence/%s",
+        String url = String.format("%s://%s/pride/ws/archive/peptide/count/assay/%s/sequence/%s",
                 config.getProtocol(), config.getHostName(), assayAccession, sequence);
 
         return this.restTemplate.getForObject(url, Integer.class);

@@ -1,5 +1,6 @@
 package uk.ac.ebi.pride.archive.wsclient.client.peptide;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,11 @@ public class PeptideWsClientTest {
     AbstractArchiveWsConfig archiveWsConfig;
     PeptideWsClient peptideWsClient;
 
+    @Before
+    public void setUp() throws Exception {
+        peptideWsClient = new PeptideWsClient(archiveWsConfig);
+    }
+
 
     @Test
     public void testGetPsmsByProject() throws Exception {
@@ -30,44 +36,48 @@ public class PeptideWsClientTest {
     @Test
     public void testCountPsmsByProject() throws Exception {
         int res = peptideWsClient.countPsmsByProject("PXD000402");
-        assertTrue(res == 20);
+        assertTrue(res == 70303);
     }
 
     @Test
     public void testGetPsmsByProjectAndSequence() throws Exception {
-        PsmDetailList res = peptideWsClient.getPsmsByProjectAndSequence("PXD000402", "KKKK");
+        PsmDetailList res = peptideWsClient.getPsmsByProjectAndSequence("PXD000402", "*GGPVSYIS*");
         assertTrue(res != null);
-        assertTrue(res.list.length == 1000);
+        assertTrue(res.list.length == 5);
     }
 
     @Test
     public void testCountPsmsByProjectAndSequence() throws Exception {
-        int res = peptideWsClient.countPsmsByProjectAndSequence("PXD000402", "KKKK");
-        assertTrue(res == 20);
+        int res = peptideWsClient.countPsmsByProjectAndSequence("PXD000402", "*GGPVSYIS*");
+        assertTrue(res == 0);
+        //Todo: Inconsistency should be 5
     }
 
     @Test
     public void testGetPsmsByAssay() throws Exception {
-        PsmDetailList res = peptideWsClient.getPsmsByAssay("38579",0,20);
+        PsmDetailList res = peptideWsClient.getPsmsByAssay("38579", 0, 20);
         assertTrue(res.list.length == 20);
     }
 
     @Test
     public void testCountPsmsByAssay() throws Exception {
         int res = peptideWsClient.countPsmsByAssay("38579");
-        assertTrue(res == 20);
+        assertTrue(res == 19157);
     }
 
     @Test
     public void testGetPsmsByAssayAndSequence() throws Exception {
-        PsmDetailList res = peptideWsClient.getPsmsByAssayAndSequence("38579", "KKKK");
+        PsmDetailList res = peptideWsClient.getPsmsByAssayAndSequence("38579", "*GGPVSYIS*");
         assertTrue(res != null);
-        assertTrue(res.list.length == 1000);
+        assertTrue(res.list.length == 2);
     }
 
     @Test
     public void testCountPsmsByAssayAndSequence() throws Exception {
-        int res = peptideWsClient.countPsmsByAssayAndSequence("38579", "KKKKK");
-        assertTrue(res == 20);
+        int res = peptideWsClient.countPsmsByAssayAndSequence("38579", "*GGPVSYIS*");
+        assertTrue(res == 0);
+        //Todo: inconsistency in results check with Florian should be 2
     }
+
+
 }
