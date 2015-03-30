@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/PRIDE-Archive/web-service-example-client.svg?branch=master)](https://travis-ci.org/PRIDE-Archive/web-service-example-client)
 archive-ws-client-java
 ======================
 
